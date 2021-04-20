@@ -1,0 +1,59 @@
+
+
+VAR
+    // declaring hash table
+    htab : HASH_TABLE<INTEGER,INTEGER> ;
+    // HASH_TABLE<Key_type,Value_type>
+    tab_1 : ARRAY_OF INTEGER[4]; // declaring the array and define its length.
+    tab_2 : ARRAY_OF INTEGER[4]; 
+    count, el, sum , i , key ,iter , set : INTEGER;  
+
+BEGIN
+    count:= 1;
+    sum:= 0;
+    tab_1 : [8, 2, 7, 9];
+    tab_2: [2, 4, 5, 9, 8];
+FOR i FROM 0 TO tab_1.length-1 STEP 1  DO
+    el := tab_1[i];
+    IF (htab.lookup(el)) THEN
+        count := htab.get(el);
+        htab.insert(el, count+1);
+    ELSE 
+        htab.insert(el, 1);
+    END_IF
+END_FOR
+
+FOR i FROM 0 TO tab_2.length-1 STEP 1  DO
+    el := tab_2[i];
+    IF (htab.lookup(el)) THEN
+        count := htab.get(el);
+        htab.insert(el, count+1);
+    ELSE 
+        htab.insert(el, 1);
+    END_IF
+END_FOR
+
+    // Get an iterator
+    iter := set.iterator();
+    // Using keySet() to get the set view of keys
+    set := htab.keySet();
+    // Display elements
+WHILE (iter.hasNext()) DO
+    key := iter.next();
+    count := htab.get(key);
+    IF (count == 2) THEN
+        sum := sum + key*count;
+    END_IF
+END_WHILE
+
+    Write('tab 1 :');
+    FOR i FROM 0 TO Set_1.length-1 STEP 1 DO 
+        Write(tab_1[i]) ;
+    END_FOR
+    Write('tab 2 :');
+    FOR i FROM 0 TO Set_2.length-1 STEP 1  DO   
+        Write(tab_2[i]);
+    END_FOR
+    Write('Sum of overlapping elements:' ) ;
+    Write(sum) ;
+END

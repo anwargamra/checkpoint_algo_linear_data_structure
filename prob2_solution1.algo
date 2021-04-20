@@ -1,0 +1,45 @@
+
+VAR
+    tab_1 : ARRAY_OF INTEGER[] ; 
+    tab_2 : ARRAY_OF INTEGER[] ;
+    sum , i , j , k, temp : INTEGER ;  // declaring the index for each element in the array.
+
+BEGIN
+    tab_1 : [8, 2, 7, 9] ;
+    tab_2: [4, 5, 8, 9] ;
+    sum := 0 ;
+    temp := 0 ;
+    
+FOR i FROM 0 TO tab_1.length-1 STEP 1  DO
+  FOR j FROM 0 TO tab_2.length-1 STEP 1  DO
+
+    IF (tab_2[j] = tab_1[i]) THEN
+      temp = temp +1;
+    END_IF
+  END_FOR
+    IF (temp >= 1 ) THEN
+        sum = sum + tab_1[i];
+    END_IF
+
+  
+END_FOR
+
+FOR j FROM 0 TO tab_2.length-1 STEP 1  DO
+  FOR i FROM 0 TO tab_1.length-1 STEP 1  DO
+  
+    IF (tab_2[j] = tab_1[i]) THEN
+      temp = temp +1;
+    END_IF
+  END_FOR
+    IF (temp >= 1) THEN
+        sum = sum + tab_2[i];
+    END_IF
+
+END_FOR
+
+ Write('Distinct Elements Sum : ') ;
+ Write(sum);
+
+END
+
+      
